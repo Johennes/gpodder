@@ -37,7 +37,7 @@ class gPodderAddPodcast(BuilderWidget):
         if hasattr(self, 'preset_url'):
             self.entry_url.set_text(self.preset_url)
         self.entry_url.connect('activate', self.on_entry_url_activate)
-        self.gPodderAddPodcast.show()
+        self.gPodderAddPodcast.show_all()
 
         if not hasattr(self, 'preset_url'):
             # Fill the entry if a valid URL is in the clipboard, but

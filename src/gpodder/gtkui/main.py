@@ -59,7 +59,8 @@ from .widgets import SimpleMessageArea
 
 import gi  # isort:skip
 gi.require_version('Gtk', '3.0')  # isort:skip
-from gi.repository import Gdk, GdkPixbuf, Gio, GLib, GObject, Gtk, Pango  # isort:skip
+gi.require_version('Handy', '1')  # isort:skip
+from gi.repository import Gdk, GdkPixbuf, Gio, GLib, GObject, Gtk, Handy, Pango  # isort:skip
 
 
 logger = logging.getLogger(__name__)
@@ -71,6 +72,7 @@ N_ = gpodder.ngettext
 class gPodder(BuilderWidget, dbus.service.Object):
 
     def __init__(self, app, bus_name, gpodder_core, options):
+        Handy.init()
         dbus.service.Object.__init__(self, object_path=gpodder.dbus_gui_object_path, bus_name=bus_name)
         self.podcasts_proxy = DBusPodcastsProxy(lambda: self.channels,
                 self.on_itemUpdate_activate,
